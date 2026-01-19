@@ -15,6 +15,7 @@ AWS Bedrock의 Nova 모델과 Web Grounding 기능을 사용하여 2026년 1월 
 - Python 3.9 이상
 - AWS 계정 및 자격증명
 - AWS Bedrock 접근 권한
+- (선택) Private VPC 환경에서 사용 시 VPC Endpoint 설정
 
 ## 설치 방법
 
@@ -137,8 +138,52 @@ Web Grounding을 사용하면 각 정보의 출처(URL)가 함께 제공되어 �
 - **boto3**: AWS SDK for Python
 - **Web Grounding**: 실시간 웹 검색 기능
 
+## Private VPC 환경에서 사용하기
+
+이 코드는 **Private VPC 환경(인터넷 연결 없음)에서도 사용 가능**합니다!
+
+### VPC Endpoint 설정 방법
+
+1. **VPC Endpoint 생성**
+   - AWS Console > VPC > Endpoints > Create Endpoint
+   - Service: `com.amazonaws.us-east-1.bedrock-runtime`
+   - Type: Interface (AWS PrivateLink)
+   - VPC 및 Subnet 선택
+   - Security Group 설정 (HTTPS 443 포트 허용)
+
+2. **IAM 권한 추가**
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "bedrock:InvokeModel",
+                "bedrock:InvokeTool"
+            ],
+            "Resource": [
+                "arn:aws:bedrock:*::foundation-model/*",
+                "arn:aws:bedrock::*:system-tool/amazon.nova_grounding"
+            ]
+        }
+    ]
+}
+```
+
+3. **코드 수정 불필요**
+   - 기존 코드 그대로 사용 가능
+   - Web Grounding은 AWS 내부 인프라에서만 작동
+   - 외부 인터넷 접근 불필요
+
+### Web Grounding 작동 원리
+- 데이터가 AWS 인프라를 벗어나지 않음
+- AWS 내부 웹 검색 인덱스 사용
+- Private VPC에서도 완전히 작동
+
 ## 주의사항
 
 - Web Grounding은 현재 US 리전에서만 사용 가능합니다
 - `.env` 파일에 실제 AWS 자격증명을 입력해야 합니다
 - AWS Bedrock 사용에 따른 비용이 발생할 수 있습니다
+- Private VPC 사용 시 VPC Endpoint 설정이 필요합니다
