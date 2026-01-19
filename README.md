@@ -60,16 +60,65 @@ python main.py
 
 프로그램은 두 가지 결과를 출력합니다:
 
-1. **Without Web Grounding**: 모델의 학습 데이터만을 기반으로 한 예측
-2. **With Web Grounding**: 실시간 웹 검색을 통한 실제 Google Trends 데이터
+### 1. Without Web Grounding
+모델의 학습 데이터만을 기반으로 한 예측 결과입니다.
 
 ```
-Top Google Searches in January 2026:
-1. YouTube - 185 million searches
-2. Facebook - 151 million searches
-3. Amazon - 124 million searches
-...
+Without Web Grounding
+==================================================
+{
+  "message": {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "### Top 10 Google Trends Topics for January 2026 (Hypothetical Forecast)
+        
+        1. 2026 Winter Olympics – Milan-Cortina
+        2. CES 2026 Highlights & Announcements
+        3. Global Climate Summit 2026 Preparations
+        4. AI Regulation Debates & New Guidelines
+        5. Cryptocurrency Market Surge & New ICOs
+        ..."
+      }
+    ]
+  }
+}
 ```
+
+### 2. With Web Grounding
+실시간 웹 검색을 통한 실제 Google Trends 데이터와 출처를 제공합니다.
+
+```
+With Web Grounding
+==================================================
+Based on the available search results, here are the top trending topics and searches for January 2026:
+
+### Top Google Searches in January 2026:
+1. YouTube - 185 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+2. Facebook - 151 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+3. Amazon - 124 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+4. Weather - 101 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+5. Google - 83.1 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+6. Gmail - 68 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+7. Wordle - 68 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+8. Google Translate - 55.6 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+9. Walmart - 45.5 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+10. Yahoo - 37.2 million searches [https://www.pagetraffic.com/blog/top-google-searches/]
+
+### Other Notable Trending Topics:
+- Short Videos [https://www.latestly.com/google-trends/01012026/]
+- Twelve Grapes of Luck on New Year's Eve 2025 [https://www.latestly.com/google-trends/01012026/]
+- Mumbai Cricket Association [https://www.latestly.com/google-trends/01012026/]
+- Donald Trump [https://www.latestly.com/google-trends/15012026/]
+- Makar Sankranti 2026 [https://www.latestly.com/google-trends/15012026/]
+
+### Additional Trending Keywords:
+- ChatGPT [https://ahrefs.com/blog/top-google-searches/]
+- AI Video Generator [https://explodingtopics.com/blog/latest-trends]
+- AI for Teachers [https://explodingtopics.com/blog/latest-trends]
+```
+
+Web Grounding을 사용하면 각 정보의 출처(URL)가 함께 제공되어 신뢰성을 확인할 수 있습니다.
 
 ## 프로젝트 구조
 
