@@ -177,12 +177,6 @@ Web Grounding의 웹 검색은 AWS Bedrock 서비스 영역에서 처리되기 �
 }
 ```
 
-3. 코드 수정 불필요
-   - 기존 코드 그대로 사용 가능
-   - Private VPC 환경에서도 Web Grounding 사용 가능
-   - 고객 VPC는 외부 인터넷으로 나갈 필요 없음 (Bedrock VPC Endpoint로 호출)
-   - Web Grounding의 공개 웹 검색은 AWS Bedrock 서비스 측에서 수행됨
-
 ### Web Grounding 작동 원리
 
 - 공개 웹(public web)에서 최신 정보를 검색하여 모델 응답에 반영
